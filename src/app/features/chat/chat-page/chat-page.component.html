@@ -1,0 +1,46 @@
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+  <div class="space-y-3 md:col-span-1">
+    <h2 class="font-semibold">Mes chats</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let c of myChats" (click)="selectChat(c.chatId)" class="cursor-pointer">
+        <div matListItemTitle>{{ c.chatId }}</div>
+        <div matListItemLine class="text-sm text-gray-600">{{ c.lastMessageText }}</div>
+      </mat-list-item>
+    </mat-list>
+
+    <h3 class="font-semibold mt-6">Trouver des profils (par ville)</h3>
+    <form (ngSubmit)="findUsersByCity()" class="flex gap-2 items-end">
+      <mat-form-field appearance="outline" class="flex-1">
+        <mat-label>Ville</mat-label>
+        <input matInput [(ngModel)]="searchUserCity" name="city" placeholder="Dakar">
+      </mat-form-field>
+      <button mat-stroked-button type="submit">Rechercher</button>
+    </form>
+    <div class="space-y-2">
+      <mat-card *ngFor="let p of matches" class="p-3 flex items-center justify-between">
+        <div>
+          <div class="font-medium">{{ p.displayName }}</div>
+          <div class="text-sm text-gray-600">{{ p.city }} • {{ p.age || '?' }} ans</div>
+        </div>
+        <button mat-raised-button color="primary" (click)="openChatWith(p)">Discuter</button>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="md:col-span-2">
+    <h2 class="font-semibold">Conversation</h2>
+    <div class="border rounded min-h-[300px] p-3 space-y-2 bg-white">
+      <div *ngFor="let m of messages" class="text-sm">
+        <span class="font-medium">{{ m.senderUid }}:</span>
+        <span>{{ m.text }}</span>
+      </div>
+    </div>
+    <form (ngSubmit)="send()" class="flex gap-2 mt-3">
+      <mat-form-field appearance="outline" class="flex-1">
+        <mat-label>Votre message</mat-label>
+        <input matInput [(ngModel)]="composeText" name="compose">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Envoyer</button>
+    </form>
+  </div>
+</div>

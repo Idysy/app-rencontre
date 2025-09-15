@@ -1,0 +1,25 @@
+<div class="max-w-md mx-auto p-6 space-y-4">
+  <h1 class="text-2xl font-semibold">ConnectSN — Connexion</h1>
+  <button mat-raised-button color="primary" (click)="signInWithGoogle()">Se connecter avec Google</button>
+
+  <div class="border-t pt-4">
+    <h2 class="text-lg font-medium">Connexion par téléphone (OTP)</h2>
+    <form (ngSubmit)="sendCode()" class="space-y-2">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Numéro de téléphone (format +221...)</mat-label>
+        <input matInput [(ngModel)]="phone" name="phone" placeholder="+221770000000" required>
+      </mat-form-field>
+      <button mat-stroked-button color="primary" type="submit">Envoyer le code</button>
+    </form>
+
+    <form *ngIf="confirmation" (ngSubmit)="confirmCode()" class="space-y-2 mt-2">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Code reçu par SMS</mat-label>
+        <input matInput [(ngModel)]="code" name="code" required>
+      </mat-form-field>
+      <button mat-raised-button color="accent" type="submit">Valider</button>
+    </form>
+  </div>
+
+  <div id="recaptcha-container"></div>
+</div>

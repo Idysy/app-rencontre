@@ -1,0 +1,38 @@
+<div class="max-w-xl mx-auto p-6 space-y-4">
+  <h1 class="text-2xl font-semibold">Mon profil</h1>
+  <form (ngSubmit)="save()" class="space-y-3">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Nom affiché</mat-label>
+      <input matInput [(ngModel)]="model.displayName" name="displayName" required>
+    </mat-form-field>
+
+    <div class="grid grid-cols-2 gap-3">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Âge</mat-label>
+        <input matInput type="number" [(ngModel)]="model.age" name="age">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Ville</mat-label>
+        <input matInput list="cities" [(ngModel)]="model.city" name="city" placeholder="Dakar, Thiès...">
+        <datalist id="cities">
+          <option *ngFor="let c of senegalCities" [value]="c"></option>
+        </datalist>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Religion</mat-label>
+      <input matInput [(ngModel)]="model.religion" name="religion" placeholder="Islam, Chrétien...">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Bio</mat-label>
+      <textarea matInput rows="3" [(ngModel)]="model.bio" name="bio"></textarea>
+    </mat-form-field>
+
+    <div class="flex gap-3">
+      <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+    </div>
+  </form>
+</div>

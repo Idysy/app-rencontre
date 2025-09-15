@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="!bg-green-700 !text-white">
+  <span class="font-semibold">ConnectSN</span>
+  <span class="flex-1"></span>
+  <a mat-button routerLink="/search" routerLinkActive="!text-black !bg-white">Recherche</a>
+  <a mat-button routerLink="/chat" routerLinkActive="!text-black !bg-white">Chat</a>
+  <a mat-button routerLink="/premium" routerLinkActive="!text-black !bg-white">Premium</a>
+  <a mat-raised-button color="accent" routerLink="/auth">Se connecter</a>
+</mat-toolbar>
+
+<div class="p-4">
+  <router-outlet></router-outlet>
+  <div class="text-center text-sm text-gray-500 mt-8">Pour commencer, allez sur Auth, créez votre profil, puis recherchez des profils proches de Dakar.</div>
+  </div>

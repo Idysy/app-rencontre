@@ -1,0 +1,39 @@
+<div class="max-w-4xl mx-auto p-6 space-y-4">
+  <h1 class="text-2xl font-semibold">Recherche</h1>
+  <form (ngSubmit)="search()" class="grid grid-cols-1 md:grid-cols-5 gap-3 items-end">
+    <mat-form-field appearance="outline" class="w-full md:col-span-1">
+      <mat-label>Ville</mat-label>
+      <input matInput [(ngModel)]="city" name="city">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full md:col-span-1">
+      <mat-label>Nom</mat-label>
+      <input matInput [(ngModel)]="name" name="name" placeholder="Ex: Awa, Mamadou">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Âge min</mat-label>
+      <input matInput type="number" [(ngModel)]="minAge" name="minAge">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Âge max</mat-label>
+      <input matInput type="number" [(ngModel)]="maxAge" name="maxAge">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Religion</mat-label>
+      <input matInput [(ngModel)]="religion" name="religion">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Filtrer</button>
+    <button mat-stroked-button type="button" (click)="city=''; name=''; minAge=undefined; maxAge=undefined; religion=undefined; search()">Tous les profils</button>
+  </form>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <mat-card *ngFor="let p of results" class="p-3">
+      <div class="font-medium">{{ p.displayName }}</div>
+      <div class="text-sm text-gray-600">{{ p.city }} • {{ p.age || '?' }} ans • {{ p.religion || '—' }}</div>
+      <p class="mt-2 text-sm">{{ p.bio }}</p>
+    </mat-card>
+  </div>
+</div>
